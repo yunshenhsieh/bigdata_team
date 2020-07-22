@@ -1,0 +1,11 @@
+10|metascore_w user large movie positive indiv perfect
+9|metascore_w user large movie positive indiv
+8|metascore_w user large movie positive indiv
+7|metascore_w user large movie positive indiv
+6|metascore_w user large movie mixed indiv
+5|metascore_w user large movie mixed indiv
+4|metascore_w user large movie mixed indiv
+3|metascore_w user large movie negative indiv
+2|metascore_w user large movie negative indiv
+1|metascore_w user large movie negative indiv
+0|metascore_w user large movie negative indiv
