@@ -1,0 +1,10 @@
+{
+	"live-restore":true,
+	"group":"dockerroot",
+	"hosts":[
+		"unix:///var/run/docker.sock",
+		"tcp://10.1.0.221:2375"
+	],
+	"cluster-store":"consul://10.1.0.221:8500",
+	"cluster-advertise":"enp8s0:2375"
+}
