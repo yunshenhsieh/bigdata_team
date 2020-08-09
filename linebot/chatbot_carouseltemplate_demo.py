@@ -22,7 +22,7 @@ server_url="https://62b0ae3058cd.ap.ngrok.io"
 
 
 # 設定Server啟用細節
-app = Flask(__name__,static_url_path = "/images" , static_folder = "../images/" )
+app = Flask(__name__)
 
 # 生成實體物件
 line_bot_api = LineBotApi("G4LPXeUwFFFHgmIlkFu0KXHLKJEgiyUxNahIUKusvhZYsi690q+mFfNpSVw4UHhxBU+/mbXwtWODQ6VGHsgoBzijvnO0tZFUKtBru0uS8/uWkIHd6RGTgvyuY8mULx/98FTXyhUde5VckdTko0xB2gdB04t89/1O/w1cDnyilFU=")
