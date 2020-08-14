@@ -126,6 +126,8 @@ if k == 1:
                             author + '\n' +
                             label + '\n' +
                             post_time)
+                    # 使用s3_client上傳爬下來的資料夾至桶子內
+                    s3_client.upload_file(path + '{}.txt'.format(tit), 'eb102', 'student3/' + tit)
                 # 超出索引值處理，還是印下來，因為ptt刪文後就會造成索引值消失，雖然沒有內容，但可以做日後核對跟檢查用。
                 except IndexError as e:
                     tit = str(page)+'n'+str(tweety+1) + str(e)
@@ -138,6 +140,8 @@ if k == 1:
                             author + '\n' +
                             label + '\n' +
                             post_time)
+                    # 使用s3_client上傳爬下來的資料夾至桶子內
+                    s3_client.upload_file(path + '{}.txt'.format(tit), 'eb102', 'student3/' + tit)
                 # 通常是出現非檔名字元造成，在此處理非檔名字元後重新存入。
                 except OSError:
                     tit=tit.replace('\\','\'反斜\'').replace('/','／').replace('?','？').replace(':','：').replace('*','＊')\
@@ -151,13 +155,13 @@ if k == 1:
                             author + '\n' +
                             label + '\n' +
                             post_time)
+                    # 使用s3_client上傳爬下來的資料夾至桶子內
+                    s3_client.upload_file(path +'{}.txt'.format(tit), 'eb102', 'student3/' + tit)
                 # 換下一篇文章
                 tweety += 1
             # 換下一頁
             page-=1
 
-        # 使用s3_client上傳爬下來的資料夾至桶子內
-        s3_client.upload_file(path, 'eb102', 'student3/' + path)
         print('程式結束。')
 
     except:
