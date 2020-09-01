@@ -1,5 +1,5 @@
 # 引用Web Server套件
-from flask import Flask, request, abort,json
+from flask import Flask, request, abort
 
 # 從linebot 套件包裡引用 LineBotApi 與 WebhookHandler 類別
 from linebot import (
@@ -16,14 +16,16 @@ from linebot.models import *
 
 # 載入設定檔
 
-import json
+
 # secretFileContentJson=json.load(open("../line_secret_key",'r',encoding="utf-8"))
 # server_url="https://6a58dd9c8683.ap.ngrok.io"
 from pymongo import MongoClient
 
 # 設定Server啟用細節
-app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\imdb_post\\')
-post_path='https://2b9ea29df5c3.ap.ngrok.io/static/'
+app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\\')
+ngrok_path='https://9c716afc4fb3.ap.ngrok.io'
+imdb_post_path=ngrok_path + '/static/imdb_post/'
+yahoo_post_path=ngrok_path + '/static/yahoo_post/'
 # 生成實體物件
 line_bot_api = LineBotApi("G4LPXeUwFFFHgmIlkFu0KXHLKJEgiyUxNahIUKusvhZYsi690q+mFfNpSVw4UHhxBU+/mbXwtWODQ6VGHsgoBzijvnO0tZFUKtBru0uS8/uWkIHd6RGTgvyuY8mULx/98FTXyhUde5VckdTko0xB2gdB04t89/1O/w1cDnyilFU=")
 handler = WebhookHandler("81c080654026415b7968b9b1c4c6e8f3")
@@ -108,7 +110,7 @@ def handle_image_message(event):
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url=post_path + '{}.jpg'.format(movie_name[0][1]),
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[0][1]),
                         title='{}'.format(movie_name[0][0]),
                         text='一個模板可以有三個按鈕',
                         actions=[
@@ -129,7 +131,7 @@ def handle_image_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path + '{}.jpg'.format(movie_name[1][1]),
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[1][1]),
                         title='{}'.format(movie_name[1][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -148,7 +150,7 @@ def handle_image_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path + '{}.jpg'.format(movie_name[2][1]),
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[2][1]),
                         title='{}'.format(movie_name[2][0]),
                         text='最多可以放十個',
                         actions=[
@@ -167,7 +169,7 @@ def handle_image_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path + '{}.jpg'.format(movie_name[3][1]),
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[3][1]),
                         title='{}'.format(movie_name[3][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -186,7 +188,7 @@ def handle_image_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path + '{}.jpg'.format(movie_name[4][1]),
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[4][1]),
                         title='{}'.format(movie_name[4][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -219,11 +221,10 @@ def handle_image_message(event):
 若收到圖片消息時，
 先回覆用戶文字消息，並從Line上將照片拿回。
 '''
-
+import json,random
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg=event.message.text
-
     if msg == '隨機推薦':
         movie_name=sql_search()
         message = TemplateSendMessage(
@@ -231,7 +232,7 @@ def handle_message(event):
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[0][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[0][1]),
                         title='{}'.format(movie_name[0][0]),
                         text='一個模板可以有三個按鈕',
                         actions=[
@@ -252,7 +253,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[1][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[1][1]),
                         title='{}'.format(movie_name[1][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -271,7 +272,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[2][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[2][1]),
                         title='{}'.format(movie_name[2][0]),
                         text='最多可以放十個',
                         actions=[
@@ -290,7 +291,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[3][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[3][1]),
                         title='{}'.format(movie_name[3][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -309,7 +310,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[4][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[4][1]),
                         title='{}'.format(movie_name[4][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -328,7 +329,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[5][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[5][1]),
                         title='{}'.format(movie_name[5][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -347,7 +348,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[6][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[6][1]),
                         title='{}'.format(movie_name[6][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -366,7 +367,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[7][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[7][1]),
                         title='{}'.format(movie_name[7][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -385,7 +386,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[8][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[8][1]),
                         title='{}'.format(movie_name[8][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -404,7 +405,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=post_path+'{}.jpg'.format(movie_name[9][1]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[9][1]),
                         title='{}'.format(movie_name[9][0]),
                         text='副標題可以自己改',
                         actions=[
@@ -452,6 +453,457 @@ def handle_message(event):
     elif msg == '圖像推薦':
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請上傳「一張圖片」或「直接照張像」'))
 
+    elif msg == '中文電影推薦':
+        con = MongoClient('mongodb://192.168.60.128:27017/')
+        db = con.Movie_project
+        dis = db.movie_similarity.find()
+        dis=list(dis)
+        dis=[(di['電影中文名'],di['_id']) for di in dis]
+        movie_name = random.sample(dis, k=10)
+
+        message = TemplateSendMessage(
+            alt_text='中文電影推薦',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path+'{}.jpg'.format(movie_name[0][1]),
+                        title='{}'.format(movie_name[0][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[0][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[0][0]),
+                                text='{}的相關推薦'.format(movie_name[0][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[1][1]),
+                        title='{}'.format(movie_name[1][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[1][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[1][0]),
+                                text='{}的相關推薦'.format(movie_name[1][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[2][1]),
+                        title='{}'.format(movie_name[2][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[2][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[2][0]),
+                                text='{}的相關推薦'.format(movie_name[2][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[3][1]),
+                        title='{}'.format(movie_name[3][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[3][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[3][0]),
+                                text='{}的相關推薦'.format(movie_name[3][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[4][1]),
+                        title='{}'.format(movie_name[4][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[4][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[4][0]),
+                                text='{}的相關推薦'.format(movie_name[4][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[5][1]),
+                        title='{}'.format(movie_name[5][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[5][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[5][0]),
+                                text='{}的相關推薦'.format(movie_name[5][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[6][1]),
+                        title='{}'.format(movie_name[6][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[6][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[6][0]),
+                                text='{}的相關推薦'.format(movie_name[6][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[7][1]),
+                        title='{}'.format(movie_name[7][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[7][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[7][0]),
+                                text='{}的相關推薦'.format(movie_name[7][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[8][1]),
+                        title='{}'.format(movie_name[8][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[8][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[8][0]),
+                                text='{}的相關推薦'.format(movie_name[8][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(movie_name[9][1]),
+                        title='{}'.format(movie_name[9][0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[9][1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[9][0]),
+                                text='{}的相關推薦'.format(movie_name[9][0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token,message)
+
+    elif msg == '{}的相關推薦'.format(msg.split('的相關推薦')[0]):
+        con = MongoClient('mongodb://192.168.60.128:27017/')
+        db = con.Movie_project
+        dis = db.movie_similarity.find({'電影中文名':"{}".format(msg.split('的相關推薦')[0])})
+        movie_name = list(dis[0]['其他電影相似度'].keys())[:]
+        message = TemplateSendMessage(
+            alt_text='中文相似電影推薦',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[0])),
+                        title='{}'.format(movie_name[0]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[0])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[0]),
+                                text='{}的相關推薦'.format(movie_name[0])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[1])),
+                        title='{}'.format(movie_name[1]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[1])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[1]),
+                                text='{}的相關推薦'.format(movie_name[1])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[2])),
+                        title='{}'.format(movie_name[2]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[2])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[2]),
+                                text='{}的相關推薦'.format(movie_name[2])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[3])),
+                        title='{}'.format(movie_name[3]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[3])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[3]),
+                                text='{}的相關推薦'.format(movie_name[3])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[4])),
+                        title='{}'.format(movie_name[4]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[4])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[4]),
+                                text='{}的相關推薦'.format(movie_name[4])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[5])),
+                        title='{}'.format(movie_name[5]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[5])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[5]),
+                                text='{}的相關推薦'.format(movie_name[5])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[6])),
+                        title='{}'.format(movie_name[6]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[6])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[6]),
+                                text='{}的相關推薦'.format(movie_name[6])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[7])),
+                        title='{}'.format(movie_name[7]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[7])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[7]),
+                                text='{}的相關推薦'.format(movie_name[7])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[8])),
+                        title='{}'.format(movie_name[8]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[8])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[8]),
+                                text='{}的相關推薦'.format(movie_name[8])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=yahoo_post_path + '{}.jpg'.format(yahoo_post(movie_name[9])),
+                        title='{}'.format(movie_name[9]),
+                        text='一個模板',
+                        actions=[
+                            PostbackAction(
+                                label='第一部電影',
+                                # 這是group_id
+                                data='{}'.format(movie_name[9])
+                            ),
+                            MessageAction(
+
+                                label='相關推薦'.format(movie_name[9]),
+                                text='{}的相關推薦'.format(movie_name[9])
+                            ),
+                            URIAction(
+                                label='查理專屬網頁',
+                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
 
 import pymysql,random
 def sql_search():
@@ -497,6 +949,13 @@ def sql_animation():
     m_list = random.sample(m_list, 5)
     return m_list
 
+def yahoo_post(movie_name):
+    con = MongoClient('mongodb://192.168.60.128:27017/')
+    db = con.Movie_project
+    dis = db.movie_similarity.find({'電影中文名': "{}".format(movie_name)})
+    dis = list(dis)
+    yahoo_post_id = dis[0]['_id']
+    return yahoo_post_id
 
 import joblib
 import re
