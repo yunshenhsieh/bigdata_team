@@ -22,7 +22,7 @@ from linebot.models import *
 
 # 設定Server啟用細節
 app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\\')
-ngrok_path='https://86916df84e40.ap.ngrok.io'
+ngrok_path='https://08f68bb59965.ap.ngrok.io'
 imdb_post_path=ngrok_path + '/static/imdb_post/'
 yahoo_post_path=ngrok_path + '/static/yahoo_post/'
 # 生成實體物件
@@ -40,12 +40,7 @@ def callback():
     # get request body as text
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
-
-    client = MongoClient('mongodb://192.168.60.128:27017')
-    db = client.yun
-    linebot_log_set = db.linebot_log
-    linebot_log_set.insert(json.loads(body))
-
+    kaf_producer(body)
 
     # handle webhook body
     try:
@@ -1077,6 +1072,41 @@ def comment_use(msg):
     print(a,'的好評有',g,'篇')
     print(a,'的負評有',b,'篇')
     return g,b
+
+
+from confluent_kafka import Producer
+import sys
+import time
+
+def kaf_producer(body):
+    # 用來接收從Consumer instance發出的error訊息
+    def error_cb(err):
+        print('Error: %s' % err)
+
+    # 步驟1. 設定要連線到Kafka集群的相關設定
+    props = {
+        # Kafka集群在那裡?
+        'bootstrap.servers': '192.168.60.128:9092',  # <-- 置換成要連接的Kafka集群
+        'error_cb': error_cb  # 設定接收error訊息的callback函數
+    }
+    # 步驟2. 產生一個Kafka的Producer的實例
+    producer = Producer(props)
+    # 步驟3. 指定想要發佈訊息的topic名稱
+    topicName = 'linebot_log_topic'
+    msgCounter = 0
+    try:
+        # produce(topic, [value], [key], [partition], [on_delivery], [timestamp], [headers])
+        producer.produce(topicName, value=body)
+        producer.flush()
+        print('Send ' + str(msgCounter) + ' messages to Kafka')
+    except BufferError as e:
+        # 錯誤處理
+        sys.stderr.write('%% Local producer queue is full ({} messages awaiting delivery): try again\n'
+                         .format(len(producer)))
+    except Exception as e:
+        print(e)
+    # 步驟5. 確認所在Buffer的訊息都己經送出去給Kafka了
+    producer.flush()
 
 
 '''
