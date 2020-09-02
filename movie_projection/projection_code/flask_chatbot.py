@@ -19,7 +19,6 @@ from linebot.models import *
 
 # secretFileContentJson=json.load(open("../line_secret_key",'r',encoding="utf-8"))
 # server_url="https://6a58dd9c8683.ap.ngrok.io"
-from pymongo import MongoClient
 
 # 設定Server啟用細節
 app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\\')
@@ -30,8 +29,8 @@ yahoo_post_path=ngrok_path + '/static/yahoo_post/'
 line_bot_api = LineBotApi("G4LPXeUwFFFHgmIlkFu0KXHLKJEgiyUxNahIUKusvhZYsi690q+mFfNpSVw4UHhxBU+/mbXwtWODQ6VGHsgoBzijvnO0tZFUKtBru0uS8/uWkIHd6RGTgvyuY8mULx/98FTXyhUde5VckdTko0xB2gdB04t89/1O/w1cDnyilFU=")
 handler = WebhookHandler("81c080654026415b7968b9b1c4c6e8f3")
 
-
-group_list=[]
+from pymongo import MongoClient
+import json
 # 啟動server對外接口，使Line能丟消息進來
 @app.route("/", methods=['POST'])
 def callback():
@@ -42,23 +41,11 @@ def callback():
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    # group_clue.append(body)
-    # js = json.loads(body)
-    # try:
-    #     group_list.append(js['events'][0]['postback']['data'])
-    # except:
-    #     print('no postback')
+    client = MongoClient('mongodb://192.168.60.128:27017')
+    db = client.yun
+    linebot_log_set = db.linebot_log
+    linebot_log_set.insert(json.loads(body))
 
-    # if len(group_clue) == 3:
-
-    # try:
-    #     with open('./log.txt','a',encoding='utf-8')as f:
-    #         js=json.loads(body)
-    #         # text=js['events'][0]['message']['text']
-    #         data=js['events'][0]['postback']['data']
-    #         f.write(data)
-    # except:
-    #     print('')
 
     # handle webhook body
     try:
@@ -299,7 +286,7 @@ def handle_image_message(event):
 若收到圖片消息時，
 先回覆用戶文字消息，並從Line上將照片拿回。
 '''
-import json,random
+import random
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg=event.message.text
