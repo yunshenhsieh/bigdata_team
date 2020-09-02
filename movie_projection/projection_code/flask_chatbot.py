@@ -23,7 +23,7 @@ from pymongo import MongoClient
 
 # 設定Server啟用細節
 app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\\')
-ngrok_path='https://9c716afc4fb3.ap.ngrok.io'
+ngrok_path='https://86916df84e40.ap.ngrok.io'
 imdb_post_path=ngrok_path + '/static/imdb_post/'
 yahoo_post_path=ngrok_path + '/static/yahoo_post/'
 # 生成實體物件
@@ -69,6 +69,7 @@ def callback():
     return 'OK'
 
 
+import pandas as pd
 from keras.preprocessing import image
 from keras.models import load_model
 import numpy as np
@@ -85,137 +86,214 @@ def handle_image_message(event):
             f.write(chunk)
     img_path='./'+file_name
 
-    # 載入模型
-    model = load_model(r'C:\Users\Big data\PycharmProjects\projection_use\projection_code\animation.h5')
-
     # 將圖片轉為待測數據
-    def read_image(img_path):
+    path = './train_photo.csv'
+    f = open(path)
+    train = pd.read_csv(f)
+
+    model = load_model('movies_post.h5')
+
+    # 開啟圖片路徑進行預測，與前面步驟相同
+    imagelist = [img_path]
+    for file in imagelist:
+        photo_recommend_list = []
         try:
-            img = image.load_img(img_path, target_size=(150, 150))
-        except Exception as e:
-            print(img_path, e)
+            img = image.load_img(file, target_size=(400, 400, 3))
+            img = image.img_to_array(img)
+            img = img / 255
 
-        img = image.img_to_array(img)
-        img = np.expand_dims(img, axis=0)
-        return img
+            classes = np.array(train.columns[2:])  # 分類
+            proba = model.predict(img.reshape(1, 400, 400, 3))  # 分數
+            top_3 = np.argsort(proba[0])[:-4:-1]  # [:-4:-1]選出前3高的分數
 
-    # 隨機輸入一個待測圖片
+            for i in range(3):
+                print("{}".format(classes[top_3[i]]) + " ({:.3})".format(proba[0][top_3[i]]))
+                photo_recommend_list+=[name_tuple for name_tuple in (sql_animation(classes[top_3[i]]))]
 
-    img = read_image(img_path)
-    pred = model.predict(img)[0]
-    if int(pred) == 0:
-        movie_name = sql_animation()
-        message = TemplateSendMessage(
-            alt_text='隨機推薦旋轉木馬按鈕訊息',
-            template=CarouselTemplate(
-                columns=[
-                    CarouselColumn(
-                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[0][1]),
-                        title='{}'.format(movie_name[0][0]),
-                        text='一個模板可以有三個按鈕',
-                        actions=[
-                            PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[0][2])
-                            ),
-                            MessageAction(
+        except OSError as e:
+            pass
+            print('oserror')
+    message = TemplateSendMessage(
+        alt_text='隨機推薦旋轉木馬按鈕訊息',
+        template=CarouselTemplate(
+            columns=[
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[0][1]),
+                    title='{}'.format(photo_recommend_list[0][0]),
+                    text='一個模板可以有三個按鈕',
+                    actions=[
+                        PostbackAction(
+                            label='第一部電影',
+                            # 這是group_id
+                            data='{}'.format(photo_recommend_list[0][2])
+                        ),
+                        MessageAction(
 
-                                label='分類：{}'.format(movie_name[0][2]),
-                                text='{}'.format(movie_name[0][2])
-                            ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[1][1]),
-                        title='{}'.format(movie_name[1][0]),
-                        text='副標題可以自己改',
-                        actions=[
-                            PostbackAction(
-                                label='第二部電影',
-                                data='{}'.format(movie_name[1][2])
-                            ),
-                            MessageAction(
-                                label='分類：{}'.format(movie_name[1][2]),
-                                text='{}'.format(movie_name[1][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[2][1]),
-                        title='{}'.format(movie_name[2][0]),
-                        text='最多可以放十個',
-                        actions=[
-                            PostbackAction(
-                                label='第三部電影',
-                                data='{}'.format(movie_name[2][2])
-                            ),
-                            MessageAction(
-                                label='分類：{}'.format(movie_name[2][2]),
-                                text='{}'.format(movie_name[2][2])
-                            ),
-                            URIAction(
-                                label='uri2',
-                                uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[3][1]),
-                        title='{}'.format(movie_name[3][0]),
-                        text='副標題可以自己改',
-                        actions=[
-                            PostbackAction(
-                                label='第四部電影',
-                                data='{}'.format(movie_name[3][2])
-                            ),
-                            MessageAction(
-                                label='分類：{}'.format(movie_name[3][2]),
-                                text='{}'.format(movie_name[3][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
-                            )
-                        ]
-                    ),
-                    CarouselColumn(
-                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[4][1]),
-                        title='{}'.format(movie_name[4][0]),
-                        text='副標題可以自己改',
-                        actions=[
-                            PostbackAction(
-                                label='第五部電影',
-                                data='{}'.format(movie_name[4][2])
-                            ),
-                            MessageAction(
-                                label='分類：{}'.format(movie_name[4][2]),
-                                text='{}'.format(movie_name[4][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
-                            )
-                        ]
-                    )
-                ]
-            )
+                            label='分類：{}'.format(photo_recommend_list[0][2]),
+                            text='{}'.format(photo_recommend_list[0][2])
+                        ),
+                        URIAction(
+                            label='查理專屬網頁',
+                            uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[1][1]),
+                    title='{}'.format(photo_recommend_list[1][0]),
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackAction(
+                            label='第二部電影',
+                            data='{}'.format(photo_recommend_list[1][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[1][2]),
+                            text='{}'.format(photo_recommend_list[1][2])
+                        ),
+                        URIAction(
+                            label='進入2的網頁',
+                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[2][1]),
+                    title='{}'.format(photo_recommend_list[2][0]),
+                    text='最多可以放十個',
+                    actions=[
+                        PostbackAction(
+                            label='第三部電影',
+                            data='{}'.format(photo_recommend_list[2][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[2][2]),
+                            text='{}'.format(photo_recommend_list[2][2])
+                        ),
+                        URIAction(
+                            label='uri2',
+                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[3][1]),
+                    title='{}'.format(photo_recommend_list[3][0]),
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackAction(
+                            label='第四部電影',
+                            data='{}'.format(photo_recommend_list[3][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[3][2]),
+                            text='{}'.format(photo_recommend_list[3][2])
+                        ),
+                        URIAction(
+                            label='進入2的網頁',
+                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[4][1]),
+                    title='{}'.format(photo_recommend_list[4][0]),
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackAction(
+                            label='第五部電影',
+                            data='{}'.format(photo_recommend_list[4][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[4][2]),
+                            text='{}'.format(photo_recommend_list[4][2])
+                        ),
+                        URIAction(
+                            label='進入2的網頁',
+                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[5][1]),
+                    title='{}'.format(photo_recommend_list[5][0]),
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackAction(
+                            label='第六部電影',
+                            data='{}'.format(photo_recommend_list[5][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[5][2]),
+                            text='{}'.format(photo_recommend_list[5][2])
+                        ),
+                        URIAction(
+                            label='進入2的網頁',
+                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[6][1]),
+                    title='{}'.format(photo_recommend_list[6][0]),
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackAction(
+                            label='第七部電影',
+                            data='{}'.format(photo_recommend_list[6][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[6][2]),
+                            text='{}'.format(photo_recommend_list[6][2])
+                        ),
+                        URIAction(
+                            label='進入2的網頁',
+                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[7][1]),
+                    title='{}'.format(photo_recommend_list[7][0]),
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackAction(
+                            label='第八部電影',
+                            data='{}'.format(photo_recommend_list[7][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[7][2]),
+                            text='{}'.format(photo_recommend_list[7][2])
+                        ),
+                        URIAction(
+                            label='進入2的網頁',
+                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                        )
+                    ]
+                ),
+                CarouselColumn(
+                    thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[8][1]),
+                    title='{}'.format(photo_recommend_list[8][0]),
+                    text='副標題可以自己改',
+                    actions=[
+                        PostbackAction(
+                            label='第九部電影',
+                            data='{}'.format(photo_recommend_list[8][2])
+                        ),
+                        MessageAction(
+                            label='分類：{}'.format(photo_recommend_list[8][2]),
+                            text='{}'.format(photo_recommend_list[8][2])
+                        ),
+                        URIAction(
+                            label='進入2的網頁',
+                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                        )
+                    ]
+                )
+            ]
         )
-        line_bot_api.reply_message(event.reply_token, message)
-
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,TextSendMessage(text='非動畫片')
-        )
-
+    )
+    line_bot_api.reply_message(event.reply_token, message)
 
 '''
 若收到圖片消息時，
@@ -931,7 +1009,7 @@ def sql_search():
     print(m_list)
     return m_list
 
-def sql_animation():
+def sql_animation(movie_name):
     host = '192.168.60.128'
     port = 3307
     user = 'root'
@@ -940,13 +1018,14 @@ def sql_animation():
     charset = 'utf8mb4'
     conn = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db, charset=charset)
     cursor = conn.cursor()
-    sql_select = "select primaryTitle,id,group_id from movie_group_id WHERE Animation = 1;"
+    sql_select = "select primaryTitle,id,group_id from movie_group_id WHERE {} = 1;".format(movie_name)
     cursor.execute(sql_select)
-    m_list = cursor.fetchall()
+    row_2 = cursor.fetchall()
+    m_list=random.sample(row_2, k=3)
     conn.commit()
     cursor.close()
     conn.close()
-    m_list = random.sample(m_list, 5)
+    print(m_list)
     return m_list
 
 def yahoo_post(movie_name):
