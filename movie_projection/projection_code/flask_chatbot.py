@@ -105,9 +105,8 @@ def handle_image_message(event):
                     text='一個模板可以有三個按鈕',
                     actions=[
                         PostbackAction(
-                            label='第一部電影',
-                            # 這是group_id
-                            data='{}'.format(photo_recommend_list[0][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[0][1])
                         ),
                         MessageAction(
 
@@ -126,8 +125,8 @@ def handle_image_message(event):
                     text='副標題可以自己改',
                     actions=[
                         PostbackAction(
-                            label='第二部電影',
-                            data='{}'.format(photo_recommend_list[1][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[1][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[1][2]),
@@ -145,8 +144,8 @@ def handle_image_message(event):
                     text='最多可以放十個',
                     actions=[
                         PostbackAction(
-                            label='第三部電影',
-                            data='{}'.format(photo_recommend_list[2][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[2][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[2][2]),
@@ -164,8 +163,8 @@ def handle_image_message(event):
                     text='副標題可以自己改',
                     actions=[
                         PostbackAction(
-                            label='第四部電影',
-                            data='{}'.format(photo_recommend_list[3][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[3][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[3][2]),
@@ -183,8 +182,8 @@ def handle_image_message(event):
                     text='副標題可以自己改',
                     actions=[
                         PostbackAction(
-                            label='第五部電影',
-                            data='{}'.format(photo_recommend_list[4][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[4][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[4][2]),
@@ -202,8 +201,8 @@ def handle_image_message(event):
                     text='副標題可以自己改',
                     actions=[
                         PostbackAction(
-                            label='第六部電影',
-                            data='{}'.format(photo_recommend_list[5][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[5][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[5][2]),
@@ -221,8 +220,8 @@ def handle_image_message(event):
                     text='副標題可以自己改',
                     actions=[
                         PostbackAction(
-                            label='第七部電影',
-                            data='{}'.format(photo_recommend_list[6][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[6][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[6][2]),
@@ -240,8 +239,8 @@ def handle_image_message(event):
                     text='副標題可以自己改',
                     actions=[
                         PostbackAction(
-                            label='第八部電影',
-                            data='{}'.format(photo_recommend_list[7][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[7][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[7][2]),
@@ -259,8 +258,8 @@ def handle_image_message(event):
                     text='副標題可以自己改',
                     actions=[
                         PostbackAction(
-                            label='第九部電影',
-                            data='{}'.format(photo_recommend_list[8][2])
+                            label='喜歡這部電影',
+                            data='喜歡電影的id:{}'.format(photo_recommend_list[8][1])
                         ),
                         MessageAction(
                             label='分類：{}'.format(photo_recommend_list[8][2]),
@@ -297,9 +296,8 @@ def handle_message(event):
                         text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[0][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[0][1])
                             ),
                             MessageAction(
 
@@ -318,8 +316,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第二部電影',
-                                data='{}'.format(movie_name[1][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[1][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[1][2]),
@@ -337,8 +335,8 @@ def handle_message(event):
                         text='最多可以放十個',
                         actions=[
                             PostbackAction(
-                                label='第三部電影',
-                                data='{}'.format(movie_name[2][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[2][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[2][2]),
@@ -356,8 +354,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第四部電影',
-                                data='{}'.format(movie_name[3][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[3][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[3][2]),
@@ -375,8 +373,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第五部電影',
-                                data='{}'.format(movie_name[4][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[4][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[4][2]),
@@ -394,8 +392,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第六部電影',
-                                data='{}'.format(movie_name[5][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[5][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[5][2]),
@@ -413,8 +411,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第七部電影',
-                                data='{}'.format(movie_name[6][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[6][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[6][2]),
@@ -432,8 +430,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第八部電影',
-                                data='{}'.format(movie_name[7][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[7][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[7][2]),
@@ -451,8 +449,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第九部電影',
-                                data='{}'.format(movie_name[8][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[8][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[8][2]),
@@ -470,8 +468,8 @@ def handle_message(event):
                         text='副標題可以自己改',
                         actions=[
                             PostbackAction(
-                                label='第十部電影',
-                                data='{}'.format(movie_name[9][2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[9][1])
                             ),
                             MessageAction(
                                 label='分類：{}'.format(movie_name[9][2]),
@@ -531,9 +529,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[0][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[0][1])
                             ),
                             MessageAction(
 
@@ -552,9 +549,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[1][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[1][1])
                             ),
                             MessageAction(
 
@@ -573,9 +569,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[2][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[2][1])
                             ),
                             MessageAction(
 
@@ -594,9 +589,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[3][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[3][1])
                             ),
                             MessageAction(
 
@@ -615,9 +609,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[4][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[4][1])
                             ),
                             MessageAction(
 
@@ -636,9 +629,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[5][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[5][1])
                             ),
                             MessageAction(
 
@@ -657,9 +649,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[6][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[6][1])
                             ),
                             MessageAction(
 
@@ -678,9 +669,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[7][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[7][1])
                             ),
                             MessageAction(
 
@@ -699,9 +689,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[8][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[8][1])
                             ),
                             MessageAction(
 
@@ -720,9 +709,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[9][1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(movie_name[9][1])
                             ),
                             MessageAction(
 
@@ -755,9 +743,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[0])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[0]))
                             ),
                             MessageAction(
 
@@ -776,9 +763,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[1])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[1]))
                             ),
                             MessageAction(
 
@@ -797,9 +783,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[2])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[2]))
                             ),
                             MessageAction(
 
@@ -818,9 +803,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[3])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[3]))
                             ),
                             MessageAction(
 
@@ -839,9 +823,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[4])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[4]))
                             ),
                             MessageAction(
 
@@ -860,9 +843,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[5])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[5]))
                             ),
                             MessageAction(
 
@@ -881,9 +863,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[6])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[6]))
                             ),
                             MessageAction(
 
@@ -902,9 +883,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[7])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[7]))
                             ),
                             MessageAction(
 
@@ -923,9 +903,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[8])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[8]))
                             ),
                             MessageAction(
 
@@ -944,9 +923,8 @@ def handle_message(event):
                         text='一個模板',
                         actions=[
                             PostbackAction(
-                                label='第一部電影',
-                                # 這是group_id
-                                data='{}'.format(movie_name[9])
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[9]))
                             ),
                             MessageAction(
 
