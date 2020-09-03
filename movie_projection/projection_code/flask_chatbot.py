@@ -22,7 +22,7 @@ from linebot.models import *
 
 # 設定Server啟用細節
 app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\\')
-ngrok_path='https://08f68bb59965.ap.ngrok.io'
+ngrok_path='https://c9a25626a590.ap.ngrok.io'
 imdb_post_path=ngrok_path + '/static/imdb_post/'
 yahoo_post_path=ngrok_path + '/static/yahoo_post/'
 # 生成實體物件
@@ -537,12 +537,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[0][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[0][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[0][0])
                             )
                         ]
                     ),
@@ -558,12 +558,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[1][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[1][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[1][0])
                             )
                         ]
                     ),
@@ -579,12 +579,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[2][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[2][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[2][0])
                             )
                         ]
                     ),
@@ -600,12 +600,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[3][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[3][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[3][0])
                             )
                         ]
                     ),
@@ -621,12 +621,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[4][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[4][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[4][0])
                             )
                         ]
                     ),
@@ -642,12 +642,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[5][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[5][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[5][0])
                             )
                         ]
                     ),
@@ -663,12 +663,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[6][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[6][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[6][0])
                             )
                         ]
                     ),
@@ -684,12 +684,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[7][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[7][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[7][0])
                             )
                         ]
                     ),
@@ -705,12 +705,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[8][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[8][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[8][0])
                             )
                         ]
                     ),
@@ -726,12 +726,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[9][0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[9][0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[9][0])
                             )
                         ]
                     )
@@ -761,12 +761,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[0]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[0])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[0])
                             )
                         ]
                     ),
@@ -782,12 +782,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[1]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[1])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[1])
                             )
                         ]
                     ),
@@ -803,12 +803,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[2]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[2])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[2])
                             )
                         ]
                     ),
@@ -824,12 +824,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[3]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[3])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[3])
                             )
                         ]
                     ),
@@ -845,12 +845,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[4]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[4])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[4])
                             )
                         ]
                     ),
@@ -866,12 +866,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[5]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[5])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[5])
                             )
                         ]
                     ),
@@ -887,12 +887,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[6]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[6])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[6])
                             )
                         ]
                     ),
@@ -908,12 +908,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[7]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[7])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[7])
                             )
                         ]
                     ),
@@ -929,12 +929,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[8]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[8])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[8])
                             )
                         ]
                     ),
@@ -950,12 +950,12 @@ def handle_message(event):
                             ),
                             MessageAction(
 
-                                label='相關推薦'.format(movie_name[9]),
+                                label='相關推薦',
                                 text='{}的相關推薦'.format(movie_name[9])
                             ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            MessageAction(
+                                label='網路評價',
+                                text='輿論評估：{}'.format(movie_name[9])
                             )
                         ]
                     )
