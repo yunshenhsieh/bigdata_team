@@ -22,7 +22,7 @@ from linebot.models import *
 
 # 設定Server啟用細節
 app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\\')
-ngrok_path='https://c9a25626a590.ap.ngrok.io'
+ngrok_path='https://d45929d6d9dc.ap.ngrok.io'
 imdb_post_path=ngrok_path + '/static/imdb_post/'
 yahoo_post_path=ngrok_path + '/static/yahoo_post/'
 # 生成實體物件
@@ -102,20 +102,15 @@ def handle_image_message(event):
                 CarouselColumn(
                     thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[0][1]),
                     title='{}'.format(photo_recommend_list[0][0]),
-                    text='一個模板可以有三個按鈕',
+                    text='副標題可以自己改',
                     actions=[
                         PostbackAction(
                             label='喜歡這部電影',
                             data='喜歡電影的id:{}'.format(photo_recommend_list[0][1])
                         ),
                         MessageAction(
-
-                            label='分類：{}'.format(photo_recommend_list[0][2]),
-                            text='{}'.format(photo_recommend_list[0][2])
-                        ),
-                        URIAction(
-                            label='查理專屬網頁',
-                            uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[0][0])
                         )
                     ]
                 ),
@@ -129,31 +124,23 @@ def handle_image_message(event):
                             data='喜歡電影的id:{}'.format(photo_recommend_list[1][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[1][2]),
-                            text='{}'.format(photo_recommend_list[1][2])
-                        ),
-                        URIAction(
-                            label='進入2的網頁',
-                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[1][0])
                         )
                     ]
                 ),
                 CarouselColumn(
                     thumbnail_image_url=imdb_post_path + '{}.jpg'.format(photo_recommend_list[2][1]),
                     title='{}'.format(photo_recommend_list[2][0]),
-                    text='最多可以放十個',
+                    text='副標題可以自己改',
                     actions=[
                         PostbackAction(
                             label='喜歡這部電影',
                             data='喜歡電影的id:{}'.format(photo_recommend_list[2][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[2][2]),
-                            text='{}'.format(photo_recommend_list[2][2])
-                        ),
-                        URIAction(
-                            label='uri2',
-                            uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[2][0])
                         )
                     ]
                 ),
@@ -167,12 +154,8 @@ def handle_image_message(event):
                             data='喜歡電影的id:{}'.format(photo_recommend_list[3][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[3][2]),
-                            text='{}'.format(photo_recommend_list[3][2])
-                        ),
-                        URIAction(
-                            label='進入2的網頁',
-                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[3][0])
                         )
                     ]
                 ),
@@ -186,12 +169,8 @@ def handle_image_message(event):
                             data='喜歡電影的id:{}'.format(photo_recommend_list[4][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[4][2]),
-                            text='{}'.format(photo_recommend_list[4][2])
-                        ),
-                        URIAction(
-                            label='進入2的網頁',
-                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[4][0])
                         )
                     ]
                 ),
@@ -205,12 +184,8 @@ def handle_image_message(event):
                             data='喜歡電影的id:{}'.format(photo_recommend_list[5][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[5][2]),
-                            text='{}'.format(photo_recommend_list[5][2])
-                        ),
-                        URIAction(
-                            label='進入2的網頁',
-                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[5][0])
                         )
                     ]
                 ),
@@ -224,12 +199,8 @@ def handle_image_message(event):
                             data='喜歡電影的id:{}'.format(photo_recommend_list[6][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[6][2]),
-                            text='{}'.format(photo_recommend_list[6][2])
-                        ),
-                        URIAction(
-                            label='進入2的網頁',
-                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[6][0])
                         )
                     ]
                 ),
@@ -243,12 +214,8 @@ def handle_image_message(event):
                             data='喜歡電影的id:{}'.format(photo_recommend_list[7][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[7][2]),
-                            text='{}'.format(photo_recommend_list[7][2])
-                        ),
-                        URIAction(
-                            label='進入2的網頁',
-                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[7][0])
                         )
                     ]
                 ),
@@ -262,15 +229,11 @@ def handle_image_message(event):
                             data='喜歡電影的id:{}'.format(photo_recommend_list[8][1])
                         ),
                         MessageAction(
-                            label='分類：{}'.format(photo_recommend_list[8][2]),
-                            text='{}'.format(photo_recommend_list[8][2])
-                        ),
-                        URIAction(
-                            label='進入2的網頁',
-                            uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                            label='相關推薦',
+                            text='外國電影{}的相關推薦'.format(photo_recommend_list[8][0])
                         )
                     ]
-                )
+                ),
             ]
         )
     )
@@ -284,200 +247,159 @@ import random
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg=event.message.text
-    if msg == '隨機推薦':
-        movie_name=sql_search()
+    if msg == '英文電影推薦':
+        movie_name=mongo_imdb()
         message = TemplateSendMessage(
             alt_text='隨機推薦旋轉木馬按鈕訊息',
             template=CarouselTemplate(
                 columns=[
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[0][1]),
-                        title='{}'.format(movie_name[0][0]),
+                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[0]['_id']),
+                        title='{}'.format(movie_name[0]['IMDB電影名']),
                         text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[0][1])
+                                data='喜歡電影的id:{}'.format(movie_name[0]['_id'])
                             ),
                             MessageAction(
-
-                                label='分類：{}'.format(movie_name[0][2]),
-                                text='{}'.format(movie_name[0][2])
-                            ),
-                            URIAction(
-                                label='查理專屬網頁',
-                                uri='https://www.youtube.com/results?search_query=%E7%8D%A8%E8%A7%92%E7%8D%B8%E6%9F%A5%E7%90%86'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[0]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[1][1]),
-                        title='{}'.format(movie_name[1][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[1]['_id']),
+                        title='{}'.format(movie_name[1]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[1][1])
+                                data='喜歡電影的id:{}'.format(movie_name[1]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[1][2]),
-                                text='{}'.format(movie_name[1][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[1]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[2][1]),
-                        title='{}'.format(movie_name[2][0]),
-                        text='最多可以放十個',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[2]['_id']),
+                        title='{}'.format(movie_name[2]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[2][1])
+                                data='喜歡電影的id:{}'.format(movie_name[2]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[2][2]),
-                                text='{}'.format(movie_name[2][2])
-                            ),
-                            URIAction(
-                                label='uri2',
-                                uri='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Number_3_in_yellow_rounded_square.svg/200px-Number_3_in_yellow_rounded_square.svg.png'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[2]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[3][1]),
-                        title='{}'.format(movie_name[3][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[3]['_id']),
+                        title='{}'.format(movie_name[3]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[3][1])
+                                data='喜歡電影的id:{}'.format(movie_name[3]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[3][2]),
-                                text='{}'.format(movie_name[3][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[3]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[4][1]),
-                        title='{}'.format(movie_name[4][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[4]['_id']),
+                        title='{}'.format(movie_name[4]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[4][1])
+                                data='喜歡電影的id:{}'.format(movie_name[4]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[4][2]),
-                                text='{}'.format(movie_name[4][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[4]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[5][1]),
-                        title='{}'.format(movie_name[5][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[5]['_id']),
+                        title='{}'.format(movie_name[5]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[5][1])
+                                data='喜歡電影的id:{}'.format(movie_name[5]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[5][2]),
-                                text='{}'.format(movie_name[5][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[5]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[6][1]),
-                        title='{}'.format(movie_name[6][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[6]['_id']),
+                        title='{}'.format(movie_name[6]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[6][1])
+                                data='喜歡電影的id:{}'.format(movie_name[6]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[6][2]),
-                                text='{}'.format(movie_name[6][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[6]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[7][1]),
-                        title='{}'.format(movie_name[7][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[7]['_id']),
+                        title='{}'.format(movie_name[7]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[7][1])
+                                data='喜歡電影的id:{}'.format(movie_name[7]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[7][2]),
-                                text='{}'.format(movie_name[7][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[7]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[8][1]),
-                        title='{}'.format(movie_name[8][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[8]['_id']),
+                        title='{}'.format(movie_name[8]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[8][1])
+                                data='喜歡電影的id:{}'.format(movie_name[8]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[8][2]),
-                                text='{}'.format(movie_name[8][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[8]['IMDB電影名'])
                             )
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url=imdb_post_path+'{}.jpg'.format(movie_name[9][1]),
-                        title='{}'.format(movie_name[9][0]),
-                        text='副標題可以自己改',
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(movie_name[9]['_id']),
+                        title='{}'.format(movie_name[9]['IMDB電影名']),
+                        text='一個模板可以有三個按鈕',
                         actions=[
                             PostbackAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[9][1])
+                                data='喜歡電影的id:{}'.format(movie_name[9]['_id'])
                             ),
                             MessageAction(
-                                label='分類：{}'.format(movie_name[9][2]),
-                                text='{}'.format(movie_name[9][2])
-                            ),
-                            URIAction(
-                                label='進入2的網頁',
-                                uri='https://avatars1.githubusercontent.com/u/67536792?s=460&u=8f3a72f4a9637f9811d000414c85f9565e054c84&v=4'
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[9]['IMDB電影名'])
                             )
                         ]
                     )
@@ -535,7 +457,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[0][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[0][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -555,7 +477,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[1][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[1][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -575,7 +497,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[2][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[2][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -595,7 +517,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[3][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[3][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -615,7 +537,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[4][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[4][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -635,7 +557,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[5][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[5][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -655,7 +577,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[6][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[6][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -675,7 +597,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[7][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[7][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -695,7 +617,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[8][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[8][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -715,7 +637,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[9][0])
+                                text='中文電影{}的相關推薦'.format(movie_name[9][0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -728,10 +650,10 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token,message)
 
-    elif msg == '{}的相關推薦'.format(msg.split('的相關推薦')[0]):
+    elif ('相關推薦' and '中文') in msg:
         con = MongoClient('mongodb://192.168.60.128:27017/')
         db = con.Movie_project
-        dis = db.movie_similarity.find({'電影中文名':"{}".format(msg.split('的相關推薦')[0])})
+        dis = db.movie_similarity.find({'電影中文名':"{}".format(msg.split('的相關推薦')[0].split('中文電影')[1])})
         movie_name = list(dis[0]['其他電影相似度'].keys())[:]
         message = TemplateSendMessage(
             alt_text='中文相似電影推薦',
@@ -749,7 +671,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[0])
+                                text='中文電影{}的相關推薦'.format(movie_name[0])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -769,7 +691,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[1])
+                                text='中文電影{}的相關推薦'.format(movie_name[1])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -789,7 +711,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[2])
+                                text='中文電影{}的相關推薦'.format(movie_name[2])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -809,7 +731,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[3])
+                                text='中文電影{}的相關推薦'.format(movie_name[3])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -829,7 +751,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[4])
+                                text='中文電影{}的相關推薦'.format(movie_name[4])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -849,7 +771,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[5])
+                                text='中文電影{}的相關推薦'.format(movie_name[5])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -869,7 +791,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[6])
+                                text='中文電影{}的相關推薦'.format(movie_name[6])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -889,7 +811,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[7])
+                                text='中文電影{}的相關推薦'.format(movie_name[7])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -909,7 +831,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[8])
+                                text='中文電影{}的相關推薦'.format(movie_name[8])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -929,7 +851,7 @@ def handle_message(event):
                             MessageAction(
 
                                 label='相關推薦',
-                                text='{}的相關推薦'.format(movie_name[9])
+                                text='中文電影{}的相關推薦'.format(movie_name[9])
                             ),
                             MessageAction(
                                 label='網路評價',
@@ -943,32 +865,169 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
 
-import pymysql,random
-def sql_search():
-    host = '192.168.60.128'
-    port = 3307
-    user = 'root'
-    passwd = 'example'
-    db = 'mysql'
-    charset = 'utf8mb4'
-    conn = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db, charset=charset)
-    cursor = conn.cursor()
-    nu_rand = random.sample(range(1, 10), k=3)
-    m_list = []
-    for num in range(3):
-        sql_select = "select primaryTitle,id,group_id from movie_group_id WHERE group_id = {};".format(nu_rand[num])
-        cursor.execute(sql_select)
-        row_2 = cursor.fetchall()
-        conn.commit()
-        if num != 2:
-            m_list += random.sample(row_2, k=3)
-        else:
-            m_list += random.sample(row_2, k=4)
-    cursor.close()
-    conn.close()
-    print(m_list)
-    return m_list
+    elif ('相關推薦' and '外國') in msg:
+        movie_name = mongo_imdb_similarity(msg.split('的相關推薦')[0].split('外國電影')[1])
+        message = TemplateSendMessage(
+            alt_text='隨機推薦旋轉木馬按鈕訊息',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[0])),
+                        title='{}'.format(movie_name[0]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[0]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[0])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[1])),
+                        title='{}'.format(movie_name[1]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[1]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[1])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[2])),
+                        title='{}'.format(movie_name[2]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[2]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[2])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[3])),
+                        title='{}'.format(movie_name[3]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[3]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[3])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[4])),
+                        title='{}'.format(movie_name[4]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[4]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[4])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[5])),
+                        title='{}'.format(movie_name[5]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[5]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[5])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[6])),
+                        title='{}'.format(movie_name[6]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[6]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[6])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[7])),
+                        title='{}'.format(movie_name[7]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[7]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[7])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[8])),
+                        title='{}'.format(movie_name[8]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[8]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[8])
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=imdb_post_path + '{}.jpg'.format(mongo_imdb_name_to_id(movie_name[9])),
+                        title='{}'.format(movie_name[9]),
+                        text='一個模板可以有三個按鈕',
+                        actions=[
+                            PostbackAction(
+                                label='喜歡這部電影',
+                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[9]))
+                            ),
+                            MessageAction(
+                                label='相關推薦',
+                                text='外國電影{}的相關推薦'.format(movie_name[9])
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
 
+
+import pymysql,random
 def sql_animation(movie_name):
     host = '192.168.60.128'
     port = 3307
@@ -995,6 +1054,30 @@ def yahoo_post(movie_name):
     dis = list(dis)
     yahoo_post_id = dis[0]['_id']
     return yahoo_post_id
+
+def mongo_imdb():
+    con = MongoClient('mongodb://192.168.60.128:27017/')
+    db = con.Movie_project
+    dis = db.movie_similarity_IMDB_new.find()
+    dis = list(dis)
+    dis = random.sample(dis, k=10)
+    return dis
+
+def mongo_imdb_similarity(movie_name):
+    con = MongoClient('mongodb://192.168.60.128:27017/')
+    db = con.Movie_project
+    dis = db.movie_similarity_IMDB_new.find({'IMDB電影名': "{}".format(movie_name)})
+    dis = list(dis)
+    dis=list(dis[0]['其他電影相似度'].keys())[:10]
+    return dis
+
+def mongo_imdb_name_to_id(movie_name):
+    con = MongoClient('mongodb://192.168.60.128:27017/')
+    db = con.Movie_project
+    dis = db.movie_similarity_IMDB_new.find({'IMDB電影名': "{}".format(movie_name)})
+    dis = list(dis)
+    dis = dis[0]['_id']
+    return dis
 
 import joblib
 import re
@@ -1085,6 +1168,16 @@ def kaf_producer(body):
         print(e)
     # 步驟5. 確認所在Buffer的訊息都己經送出去給Kafka了
     producer.flush()
+
+from flask import render_template
+@app.route("/prediction")
+def prediction_input():
+    return render_template('test.html')
+
+@app.route("/budget",methods=['POST'])
+def prediction():
+    budget=request.values['budget']
+    return budget
 
 
 '''
