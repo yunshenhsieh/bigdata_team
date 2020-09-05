@@ -22,7 +22,7 @@ from linebot.models import *
 
 # 設定Server啟用細節
 app = Flask(__name__,static_url_path='/static',static_folder='E:\movie_project\Budget&poster\\')
-ngrok_path='https://d45929d6d9dc.ap.ngrok.io'
+ngrok_path='https://3f5b07df71e3.ap.ngrok.io'
 imdb_post_path=ngrok_path + '/static/imdb_post/'
 yahoo_post_path=ngrok_path + '/static/yahoo_post/'
 # 生成實體物件
@@ -243,7 +243,7 @@ def handle_image_message(event):
 若收到圖片消息時，
 先回覆用戶文字消息，並從Line上將照片拿回。
 '''
-import random
+import random,redis
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg=event.message.text
@@ -1018,6 +1018,133 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[9])
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    elif msg == '熱門推薦':
+        red = redis.StrictRedis(host='localhost', port=6379, db=0)
+        hot_imgurl_list=['hotimg_0','hotimg_1','hotimg_2','hotimg_3','hotimg_4','hotimg_5','hotimg_6','hotimg_7','hotimg_8','hotimg_9']
+        hot_name_list=['hotname_0','hotname_1','hotname_2','hotname_3','hotname_4','hotname_5','hotname_6','hotname_7','hotname_8','hotname_9']
+        hot_url_list=['hoturl_0','hoturl_1','hoturl_2','hoturl_3','hoturl_4','hoturl_5','hoturl_6','hoturl_7','hoturl_8','hoturl_9',]
+        hot_imgurl_list=red.mget(hot_imgurl_list)
+        hot_name_list=red.mget(hot_name_list)
+        hot_url_list=red.mget(hot_url_list)
+        message = TemplateSendMessage(
+            alt_text='隨機推薦旋轉木馬按鈕訊息',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[0].decode('utf-8'),
+                        title='{}'.format(hot_name_list[0].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                            label='電影介紹',
+                            uri=hot_url_list[0].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[1].decode('utf-8'),
+                        title='{}'.format(hot_name_list[1].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[1].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[2].decode('utf-8'),
+                        title='{}'.format(hot_name_list[2].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[2].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[3].decode('utf-8'),
+                        title='{}'.format(hot_name_list[3].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[3].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[4].decode('utf-8'),
+                        title='{}'.format(hot_name_list[4].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[4].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[5].decode('utf-8'),
+                        title='{}'.format(hot_name_list[5].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[5].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[6].decode('utf-8'),
+                        title='{}'.format(hot_name_list[6].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[6].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[7].decode('utf-8'),
+                        title='{}'.format(hot_name_list[7].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[7].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[8].decode('utf-8'),
+                        title='{}'.format(hot_name_list[8].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[8].decode('utf-8')
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url=hot_imgurl_list[9].decode('utf-8'),
+                        title='{}'.format(hot_name_list[9].decode('utf-8')),
+                        text='熱議排名：1',
+                        actions=[
+                            URIAction(
+                                label='電影介紹',
+                                uri=hot_url_list[9].decode('utf-8')
                             )
                         ]
                     )
