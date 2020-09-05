@@ -1052,7 +1052,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[1].decode('utf-8'),
                         title='{}'.format(hot_name_list[1].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：2',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1063,7 +1063,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[2].decode('utf-8'),
                         title='{}'.format(hot_name_list[2].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：3',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1074,7 +1074,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[3].decode('utf-8'),
                         title='{}'.format(hot_name_list[3].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：4',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1085,7 +1085,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[4].decode('utf-8'),
                         title='{}'.format(hot_name_list[4].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：5',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1096,7 +1096,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[5].decode('utf-8'),
                         title='{}'.format(hot_name_list[5].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：6',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1107,7 +1107,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[6].decode('utf-8'),
                         title='{}'.format(hot_name_list[6].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：7',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1118,7 +1118,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[7].decode('utf-8'),
                         title='{}'.format(hot_name_list[7].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：8',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1129,7 +1129,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[8].decode('utf-8'),
                         title='{}'.format(hot_name_list[8].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：9',
                         actions=[
                             URIAction(
                                 label='電影介紹',
@@ -1140,7 +1140,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url=hot_imgurl_list[9].decode('utf-8'),
                         title='{}'.format(hot_name_list[9].decode('utf-8')),
-                        text='熱議排名：1',
+                        text='熱議排名：10',
                         actions=[
                             URIAction(
                                 label='電影介紹',
