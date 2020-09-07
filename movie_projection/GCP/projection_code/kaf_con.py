@@ -77,20 +77,12 @@ try:
                 msgValue = try_decode_utf8(record.value())
 
                 # 秀出metadata與msgKey & msgValue訊息
-                if partition == 1:
-                    count += 1
-                    print('{}-{}-{} : ({} , {})'.format(topic, partition, offset, offset, msgValue))
-                    client = MongoClient('mongodb://' + GCP_IP + ':27017')
-                    db = client.yun
-                    linebot_log_set = db.personal_favor_log
-                    linebot_log_set.insert(json.loads(msgValue.replace("'",'"')))
-                else:
-                    count += 1
-                    print('{}-{}-{} : ({} , {})'.format(topic, partition, offset, offset, msgValue))
-                    client = MongoClient('mongodb://'+GCP_IP +':27017')
-                    db = client.yun
-                    linebot_log_set = db.linebot_log
-                    linebot_log_set.insert({str(offset):json.loads(msgValue)})
+                count += 1
+                print('{}-{}-{} : ({} , {})'.format(topic, partition, offset, offset, msgValue))
+                client = MongoClient('mongodb://'+GCP_IP +':27017')
+                db = client.yun
+                linebot_log_set = db.linebot_log
+                linebot_log_set.insert({str(offset):json.loads(msgValue)})
 except KeyboardInterrupt as e:
     sys.stderr.write('Aborted by user\n')
 except Exception as e:
