@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flask test</title>
+<!--    <link href="./tem.css" rel="stylesheet" type="text/css"> 這行跟下一行都一樣結果-->
+    <style>@import url("./tem.css");</style>
+</head>
+
+<body>
+<form method="post" action="{{ url_for('prediction')}}">
+    <fieldset>
+        <legend>票房預測</legend>
+    <p><label for="budget">預算金額:</label>
+        <input type="number" name="n_budget" id="budget">萬</p>
+
+    <br>電影分類：
+    <p class="tag">
+        <input type="checkbox" name="n_scifi" value="scifi" id="scifi">
+        <label for="scifi">科幻</label>
+        <input type="checkbox" name="n_action" value="action" id="action">
+        <label for="action">動作</label>
+        <input type="checkbox" name="n_drama" value="drama" id="drama">
+        <label for="drama">劇情</label>
+        <input type="checkbox" name="n_horror" value="horror" id="horror">
+        <label for="horror">恐怖</label>
+        <input type="checkbox" name="n_adventure" value="adventure" id="adventure">
+        <label for="adventure">冒險</label>
+        <input type="checkbox" name="n_family" value="family" id="family">
+        <label for="family">家庭</label>
+        <input type="checkbox" name="n_fantasy" value="fantasy" id="fantasy">
+        <label for="fantasy">奇幻</label>
+
+    </p>
+        <button type="submit">確定</button>
+    <input type="reset">
+    </fieldset>
+</form>
+
+</body>
+</html>

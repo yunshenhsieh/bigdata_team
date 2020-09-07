@@ -1,0 +1,7 @@
+@charset = "UTF-8";
+
+input:checked {height:50px;width:50px;}
+
+form {font-family: 'Indie Flower', cursive;}
+body {background-image:url(./image/back2.jpg);
+        background-attachment:fixed;}
