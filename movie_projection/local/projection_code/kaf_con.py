@@ -27,8 +27,9 @@ def my_assign(consumer_instance, partitions):
 # 步驟1.設定要連線到Kafka集群的相關設定
 # Consumer configuration
 # See https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md
+GCP_IP='104.199.132.135'
 props = {
-    'bootstrap.servers': '192.168.60.128:9092',       # Kafka集群在那裡? (置換成要連接的Kafka集群)
+    'bootstrap.servers': GCP_IP +':9092',       # Kafka集群在那裡? (置換成要連接的Kafka集群)
     'group.id': 'STUDENT_ID',                     # ConsumerGroup的名稱 (置換成你/妳的學員ID)
     'auto.offset.reset': 'earliest',             # Offset從最前面開始
     'session.timeout.ms': 6000,                  # consumer超過6000ms沒有與kafka連線，會被認為掛掉了
@@ -76,12 +77,20 @@ try:
                 msgValue = try_decode_utf8(record.value())
 
                 # 秀出metadata與msgKey & msgValue訊息
-                count += 1
-                print('{}-{}-{} : ({} , {})'.format(topic, partition, offset, offset, msgValue))
-                client = MongoClient('mongodb://192.168.60.128:27017')
-                db = client.yun
-                linebot_log_set = db.linebot_log
-                linebot_log_set.insert({str(offset):json.loads(msgValue)})
+                if partition == 1:
+                    count += 1
+                    print('{}-{}-{} : ({} , {})'.format(topic, partition, offset, offset, msgValue))
+                    client = MongoClient('mongodb://' + GCP_IP + ':27017')
+                    db = client.yun
+                    linebot_log_set = db.personal_favor_log
+                    linebot_log_set.insert(json.loads(msgValue.replace("'",'"')))
+                else:
+                    count += 1
+                    print('{}-{}-{} : ({} , {})'.format(topic, partition, offset, offset, msgValue))
+                    client = MongoClient('mongodb://'+GCP_IP +':27017')
+                    db = client.yun
+                    linebot_log_set = db.linebot_log
+                    linebot_log_set.insert({str(offset):json.loads(msgValue)})
 except KeyboardInterrupt as e:
     sys.stderr.write('Aborted by user\n')
 except Exception as e:

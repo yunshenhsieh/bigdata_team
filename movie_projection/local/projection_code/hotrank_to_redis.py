@@ -1,5 +1,6 @@
 import redis,requests
 from bs4 import BeautifulSoup
+GCP_IP='104.199.132.135'
 hot_name_dict= {}
 hot_url_dict= {}
 hot_img_url_dict= {}
@@ -17,7 +18,7 @@ for n, title in enumerate(title_list[:10]):
     hot_url_dict['hoturl_'+str(n)]=title_url
     hot_img_url_dict['hotimg_'+str(n)]=img_url
 
-red=redis.StrictRedis(host='localhost',port=6379,db=0)
+red=redis.StrictRedis(host=GCP_IP,port=6379,db=0)
 red.mset(hot_name_dict)
 red.mset(hot_url_dict)
 red.mset(hot_img_url_dict)
