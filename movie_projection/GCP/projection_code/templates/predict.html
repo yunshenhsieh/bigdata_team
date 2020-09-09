@@ -9,12 +9,12 @@
 
 <body>
 <form method="post" action="{{ url_for('prediction')}}">
-    <fieldset>
-        <legend>票房預測</legend>
-    <p><label for="budget">預算金額:</label>
+    <fieldset style="font-size: x-large">
+        <legend><strong>票房預測</strong></legend>
+    <p><label for="budget"><strong>預算金額:</strong></label>
         <input type="number" name="n_budget" id="budget">萬</p>
 
-    <br>電影分類：
+    <br><strong>電影分類：</strong>
     <p class="tag">
         <input type="checkbox" name="n_fantasy" value="fantasy" id="fantasy">
         <label for="fantasy">奇幻</label>
@@ -26,10 +26,35 @@
         <label for="adventure">冒險</label>
         <input type="checkbox" name="n_family" value="family" id="family">
         <label for="family">家庭</label>
+        <input type="checkbox" name="n_Comedy " value="Comedy" id="Comedy">
+        <label for="Comedy">喜劇</label>
+        <input type="checkbox" name="n_Drama " value="Drama" id="Drama">
+        <label for="Drama">劇情</label>
+        <p>
+        <input type="checkbox" name="n_Romance " value="Romance" id="Romance">
+        <label for="Romance">愛情</label>
+        <input type="checkbox" name="n_Animation  " value="Animation " id="Animation">
+        <label for="Animation">動畫</label>
+        <input type="checkbox" name="n_Thriller  " value="Thriller " id="Thriller">
+        <label for="Thriller">驚悚</label>
+        <input type="checkbox" name="n_Suspense " value="Suspense " id="Suspense ">
+        <label for="Suspense ">懸疑</label>
+        <input type="checkbox" name="Sci-fi " value="Sci-fi" id="Sci-fi">
+        <label for="Sci-fi">科幻</label>
+        <input type="checkbox" name="n_Musical " value="Musical " id="Musical ">
+        <label for="Musical ">歌舞劇</label>
+        <input type="checkbox" name="n_War film " value="War film " id="War film ">
+        <label for="War film ">戰爭</label></p>
+        <p>
+        <input type="checkbox" name="n_Western film" value="Western film" id="Western film">
+        <label for="Western film">西部</label>
+        <input type="checkbox" name="n_Epic film " value="Epic film " id="Epic film ">
+        <label for="Epic film ">史詩片</label></p>
     </p>
-        <button type="submit">確定</button>
-    <input type="reset">
+        <button style="font-size: x-large" type="submit">確定</button>
+    <input style="font-size: x-large" type="reset" >
     </fieldset>
+    <p style="font-size: x-large"><strong>預測票房金額：{{change_total}}{{budget_unit}}</strong></p>
 </form>
 
 </body>

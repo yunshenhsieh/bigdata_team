@@ -1033,7 +1033,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif msg == '熱門推薦':
+    elif msg == '熱議電影':
         red = redis.StrictRedis(host=GCP_IP, port=6379, db=0)
         hot_imgurl_list=['hotimg_0','hotimg_1','hotimg_2','hotimg_3','hotimg_4','hotimg_5','hotimg_6','hotimg_7','hotimg_8','hotimg_9']
         hot_name_list=['hotname_0','hotname_1','hotname_2','hotname_3','hotname_4','hotname_5','hotname_6','hotname_7','hotname_8','hotname_9']
@@ -1534,71 +1534,77 @@ def kaf_producer_like(userId,imdbId):
     # 步驟5. 確認所在Buffer的訊息都己經送出去給Kafka了
     producer.flush()
 
-from flask import render_template,redirect
-@app.route("/prediction")
-def prediction_input():
-    return render_template('predict.html',**locals())
-
-
+from flask import render_template
 from elasticsearch import Elasticsearch
-@app.route("/budget",methods=['POST'])
+@app.route("/prediction",methods=['GET','POST'])
 def prediction():
-    group_list=[]
-    budget=3.597 *10000
-    try:
-        budget_view=float(request.values['n_budget'])
-        budget=float(request.values['n_budget']) * budget
-        print('budget')
-    except:
-        budget=0
-        pass
-    try:
-        fantasy = request.values['n_fantasy']
-        fantasy = -59002565.873
-        group_list.append('奇幻')
-    except:
-        fantasy=0
-        pass
-    try:
-        action = request.values['n_action']
-        action = -43947852.946
-        group_list.append('動作')
-    except:
-        action=0
-        pass
-    try:
-        horror = request.values['n_horror']
-        horror = 42885605.750
-        group_list.append('恐怖')
-    except:
-        horror=0
-        pass
-    try:
-        adventure = request.values['n_adventure']
-        adventure = 36300043.894
-        group_list.append('冒險')
-    except:
-        adventure=0
-        pass
-    try:
-        family = request.values['n_family']
-        family = -54738677.841
-        group_list.append('家庭')
-    except:
-        family=0
-        pass
+    if request.method == 'POST':
+        group_list=[]
+        budget=3.597 *10000
+        try:
+            budget_view=float(request.values['n_budget'])
+            budget=float(request.values['n_budget']) * budget
+        except:
+            budget=0
+            pass
+        try:
+            fantasy = request.values['n_fantasy']
+            fantasy = -59002565.873
+            group_list.append('奇幻')
+        except:
+            fantasy=0
+            pass
+        try:
+            action = request.values['n_action']
+            action = -43947852.946
+            group_list.append('動作')
+        except:
+            action=0
+            pass
+        try:
+            horror = request.values['n_horror']
+            horror = 42885605.750
+            group_list.append('恐怖')
+        except:
+            horror=0
+            pass
+        try:
+            adventure = request.values['n_adventure']
+            adventure = 36300043.894
+            group_list.append('冒險')
+        except:
+            adventure=0
+            pass
+        try:
+            family = request.values['n_family']
+            family = -54738677.841
+            group_list.append('家庭')
+        except:
+            family=0
+            pass
 
-    total=budget + fantasy +action + horror + adventure + family
+        total=int((budget + fantasy +action + horror + adventure + family)/10000)
+        change_total=int(total/10000)
+        len_total=str(total)
+        budget_unit=''
+        if len(len_total) >= 5:
+            change_total=float(total)/10000
+            budget_unit='億'
+        else:
+            change_total=total
+            budget_unit='萬'
 
-    es = Elasticsearch('http://'+ GCP_IP +':9200')
-    doc = {'user': 'yunshen',
-           '電影預算': budget_view,
-           '預測票房': total,
-           '分類':str(group_list).replace("'","")
-           }
-    res = es.index(index='prediction', doc_type='elk', body=doc)
-    print(res['result'])
-    return redirect('http://localhost:5000/prediction')
+        es = Elasticsearch('http://'+ GCP_IP +':9200')
+        doc = {'user': 'yunshen',
+               '電影預算': budget_view,
+               '預測票房': total,
+               '分類':str(group_list).replace("'","")
+               }
+        res = es.index(index='prediction', doc_type='elk', body=doc)
+        print(res['result'])
+        return render_template('predict.html',**locals())
+    else:
+        return render_template('predict.html')
 
 '''
 啟動Server
