@@ -119,6 +119,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[0][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[0][1])
                         )
                     ]
                 ),
@@ -134,6 +138,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[1][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[1][1])
                         )
                     ]
                 ),
@@ -149,6 +157,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[2][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[2][1])
                         )
                     ]
                 ),
@@ -164,6 +176,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[3][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[3][1])
                         )
                     ]
                 ),
@@ -179,6 +195,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[4][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[4][1])
                         )
                     ]
                 ),
@@ -194,6 +214,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[5][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[5][1])
                         )
                     ]
                 ),
@@ -209,6 +233,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[6][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[6][1])
                         )
                     ]
                 ),
@@ -224,6 +252,10 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[7][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[7][1])
                         )
                     ]
                 ),
@@ -239,9 +271,13 @@ def handle_image_message(event):
                         MessageAction(
                             label='相關推薦',
                             text='外國電影{}的相關推薦'.format(photo_recommend_list[8][0])
+                        ),
+                        URIAction(
+                            label='電影介紹',
+                            uri='https://www.imdb.com/title/{}/'.format(photo_recommend_list[8][1])
                         )
                     ]
-                ),
+                )
             ]
         )
     )
@@ -273,6 +309,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[0]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[0]['_id'])
                             )
                         ]
                     ),
@@ -288,6 +328,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[1]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[1]['_id'])
                             )
                         ]
                     ),
@@ -303,6 +347,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[2]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[2]['_id'])
                             )
                         ]
                     ),
@@ -318,6 +366,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[3]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[3]['_id'])
                             )
                         ]
                     ),
@@ -333,6 +385,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[4]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[4]['_id'])
                             )
                         ]
                     ),
@@ -348,6 +404,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[5]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[5]['_id'])
                             )
                         ]
                     ),
@@ -363,6 +423,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[6]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[6]['_id'])
                             )
                         ]
                     ),
@@ -378,6 +442,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[7]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[7]['_id'])
                             )
                         ]
                     ),
@@ -393,6 +461,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[8]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[8]['_id'])
                             )
                         ]
                     ),
@@ -408,6 +480,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[9]['IMDB電影名'])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(movie_name[9]['_id'])
                             )
                         ]
                     )
@@ -463,13 +539,12 @@ def handle_message(event):
                                 data='喜歡電影的id:{}'.format(movie_name[0][1])
                             ),
                             MessageAction(
-
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[0][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[0][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[0][1])
                             )
                         ]
                     ),
@@ -487,9 +562,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[1][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[1][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[1][1])
                             )
                         ]
                     ),
@@ -507,9 +582,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[2][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[2][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[2][1])
                             )
                         ]
                     ),
@@ -527,9 +602,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[3][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[3][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[3][1])
                             )
                         ]
                     ),
@@ -547,9 +622,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[4][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[4][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[4][1])
                             )
                         ]
                     ),
@@ -567,9 +642,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[5][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[5][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[5][1])
                             )
                         ]
                     ),
@@ -587,9 +662,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[6][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[6][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[6][1])
                             )
                         ]
                     ),
@@ -607,9 +682,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[7][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[7][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[7][1])
                             )
                         ]
                     ),
@@ -627,9 +702,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[8][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[8][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[8][1])
                             )
                         ]
                     ),
@@ -647,9 +722,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[9][0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[9][0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(movie_name[9][1])
                             )
                         ]
                     )
@@ -681,9 +756,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[0])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[0])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[0]))
                             )
                         ]
                     ),
@@ -701,9 +776,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[1])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[1])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[1]))
                             )
                         ]
                     ),
@@ -721,9 +796,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[2])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[2])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[2]))
                             )
                         ]
                     ),
@@ -741,9 +816,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[3])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[3])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[3]))
                             )
                         ]
                     ),
@@ -761,9 +836,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[4])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[4])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[4]))
                             )
                         ]
                     ),
@@ -781,9 +856,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[5])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[5])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[5]))
                             )
                         ]
                     ),
@@ -801,9 +876,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[6])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[6])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[6]))
                             )
                         ]
                     ),
@@ -821,9 +896,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[7])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[7])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[7]))
                             )
                         ]
                     ),
@@ -841,9 +916,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[8])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[8])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[8]))
                             )
                         ]
                     ),
@@ -861,9 +936,9 @@ def handle_message(event):
                                 label='相關推薦',
                                 text='中文電影{}的相關推薦'.format(movie_name[9])
                             ),
-                            MessageAction(
-                                label='網路評價',
-                                text='輿論評估：{}'.format(movie_name[9])
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://movies.yahoo.com.tw/movieinfo_main/{}'.format(yahoo_post(movie_name[9]))
                             )
                         ]
                     )
@@ -891,6 +966,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[0])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[0]))
                             )
                         ]
                     ),
@@ -906,6 +985,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[1])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[1]))
                             )
                         ]
                     ),
@@ -921,6 +1004,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[2])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[2]))
                             )
                         ]
                     ),
@@ -936,6 +1023,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[3])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[3]))
                             )
                         ]
                     ),
@@ -951,6 +1042,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[4])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[4]))
                             )
                         ]
                     ),
@@ -966,6 +1061,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[5])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[5]))
                             )
                         ]
                     ),
@@ -981,6 +1080,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[6])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[6]))
                             )
                         ]
                     ),
@@ -996,6 +1099,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[7])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[7]))
                             )
                         ]
                     ),
@@ -1011,6 +1118,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[8])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[8]))
                             )
                         ]
                     ),
@@ -1026,6 +1137,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[9])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[9]))
                             )
                         ]
                     )
@@ -1034,7 +1149,7 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif msg == '熱門推薦':
+    elif msg == '熱議電影':
         red = redis.StrictRedis(host=GCP_IP, port=6379, db=0)
         hot_imgurl_list=['hotimg_0','hotimg_1','hotimg_2','hotimg_3','hotimg_4','hotimg_5','hotimg_6','hotimg_7','hotimg_8','hotimg_9']
         hot_name_list=['hotname_0','hotname_1','hotname_2','hotname_3','hotname_4','hotname_5','hotname_6','hotname_7','hotname_8','hotname_9']
@@ -1182,6 +1297,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[0])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[0]))
                             )
                         ]
                     ),
@@ -1197,6 +1316,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[1])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[1]))
                             )
                         ]
                     ),
@@ -1212,6 +1335,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[2])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[2]))
                             )
                         ]
                     ),
@@ -1227,6 +1354,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[3])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[3]))
                             )
                         ]
                     ),
@@ -1242,6 +1373,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[4])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[4]))
                             )
                         ]
                     ),
@@ -1257,6 +1392,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[5])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[5]))
                             )
                         ]
                     ),
@@ -1272,6 +1411,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[6])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[6]))
                             )
                         ]
                     ),
@@ -1287,6 +1430,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[7])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[7]))
                             )
                         ]
                     ),
@@ -1302,6 +1449,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[8])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[8]))
                             )
                         ]
                     ),
@@ -1317,6 +1468,10 @@ def handle_message(event):
                             MessageAction(
                                 label='相關推薦',
                                 text='外國電影{}的相關推薦'.format(movie_name[9])
+                            ),
+                            URIAction(
+                                label='電影介紹',
+                                uri='https://www.imdb.com/title/{}/'.format(mongo_imdb_name_to_id(movie_name[9]))
                             )
                         ]
                     )
@@ -1535,74 +1690,81 @@ def kaf_producer_like(userId,imdbId):
     # 步驟5. 確認所在Buffer的訊息都己經送出去給Kafka了
     producer.flush()
 
-from flask import render_template,redirect
-@app.route("/prediction")
-def prediction_input():
-    return render_template('predict.html',**locals())
-
-
+from flask import render_template
 from elasticsearch import Elasticsearch
-@app.route("/budget",methods=['POST'])
+@app.route("/prediction",methods=['GET','POST'])
 def prediction():
-    group_list=[]
-    budget=3.597 *10000
-    try:
-        budget_view=float(request.values['n_budget'])
-        budget=float(request.values['n_budget']) * budget
-        print('budget')
-    except:
-        budget=0
-        pass
-    try:
-        fantasy = request.values['n_fantasy']
-        fantasy = -59002565.873
-        group_list.append('奇幻')
-    except:
-        fantasy=0
-        pass
-    try:
-        action = request.values['n_action']
-        action = -43947852.946
-        group_list.append('動作')
-    except:
-        action=0
-        pass
-    try:
-        horror = request.values['n_horror']
-        horror = 42885605.750
-        group_list.append('恐怖')
-    except:
-        horror=0
-        pass
-    try:
-        adventure = request.values['n_adventure']
-        adventure = 36300043.894
-        group_list.append('冒險')
-    except:
-        adventure=0
-        pass
-    try:
-        family = request.values['n_family']
-        family = -54738677.841
-        group_list.append('家庭')
-    except:
-        family=0
-        pass
+    if request.method == 'POST':
+        group_list=[]
+        budget=3.597 *10000
+        try:
+            budget_view=float(request.values['n_budget'])
+            budget=float(request.values['n_budget']) * budget
+        except:
+            budget=0
+            pass
+        try:
+            fantasy = request.values['n_fantasy']
+            fantasy = -59002565.873
+            group_list.append('奇幻')
+        except:
+            fantasy=0
+            pass
+        try:
+            action = request.values['n_action']
+            action = -43947852.946
+            group_list.append('動作')
+        except:
+            action=0
+            pass
+        try:
+            horror = request.values['n_horror']
+            horror = 42885605.750
+            group_list.append('恐怖')
+        except:
+            horror=0
+            pass
+        try:
+            adventure = request.values['n_adventure']
+            adventure = 36300043.894
+            group_list.append('冒險')
+        except:
+            adventure=0
+            pass
+        try:
+            family = request.values['n_family']
+            family = -54738677.841
+            group_list.append('家庭')
+        except:
+            family=0
+            pass
 
-    total=budget + fantasy +action + horror + adventure + family
+        total=int((budget + fantasy +action + horror + adventure + family)/10000)
+        change_total=int(total/10000)
+        len_total=str(total)
+        budget_unit=''
+        if len(len_total) >= 5:
+            change_total=float(total)/10000
+            budget_unit='億'
+        else:
+            change_total=total
+            budget_unit='萬'
 
-    es = Elasticsearch('http://'+ GCP_IP +':9200')
-    doc = {'user': 'yunshen',
-           '電影預算': budget_view,
-           '預測票房': total,
-           '分類':str(group_list).replace("'","")
-           }
-    res = es.index(index='prediction', doc_type='elk', body=doc)
-    print(res['result'])
-    return redirect('http://localhost:5000/prediction')
+        es = Elasticsearch('http://'+ GCP_IP +':9200')
+        doc = {'user': 'yunshen',
+               '電影預算': budget_view,
+               '預測票房': total,
+               '分類':str(group_list).replace("'","")
+               }
+        res = es.index(index='prediction', doc_type='elk', body=doc)
+        print(res['result'])
+        return render_template('predict.html',**locals())
+    else:
+        return render_template('predict.html')
 
 '''
 啟動Server
 '''
 if __name__ == "__main__":
     app.run(host='0.0.0.0',debug=True)
+    
