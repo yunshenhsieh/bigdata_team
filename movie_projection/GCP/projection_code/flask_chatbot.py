@@ -42,12 +42,14 @@ def callback():
     app.logger.info("Request body: " + body)
     kaf_producer(body)
     try:
-        if 'tt' in json.loads(body)['events'][0]['postback']['data'].split(':')[1]:
+        if '已將電影' in json.loads(body)['events'][0]['message']['text'].split(':'):
             userId=json.loads(body)['events'][0]['source']['userId']
-            imdbId=json.loads(body)['events'][0]['postback']['data'].split(':')[1]
+            imdbName=json.loads(body)['events'][0]['message']['text'].split(':')[1].split('，')[0]
+            imdbId=mongo_imdb_name_to_id(imdbName)
             kaf_producer_like(userId,imdbId)
+            print(userId,imdbId)
     except:
-        print('no postback')
+        print('no like data')
 
     # handle webhook body
     try:
@@ -111,9 +113,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[0][0]),
                     text='圖像推薦:1',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[0][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[0][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -130,9 +132,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[1][0]),
                     text='圖像推薦:2',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[1][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[1][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -149,9 +151,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[2][0]),
                     text='圖像推薦:3',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[2][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[2][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -168,9 +170,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[3][0]),
                     text='圖像推薦:4',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[3][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[3][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -187,9 +189,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[4][0]),
                     text='圖像推薦:5',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[4][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[4][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -206,9 +208,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[5][0]),
                     text='圖像推薦:6',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[5][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[5][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -225,9 +227,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[6][0]),
                     text='圖像推薦:7',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[6][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[6][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -244,9 +246,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[7][0]),
                     text='圖像推薦:8',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[7][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[7][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -263,9 +265,9 @@ def handle_image_message(event):
                     title='{}'.format(photo_recommend_list[8][0]),
                     text='圖像推薦:9',
                     actions=[
-                        PostbackAction(
+                        MessageAction(
                             label='喜歡這部電影',
-                            data='喜歡電影的id:{}'.format(photo_recommend_list[8][1])
+                            text='已將電影:{}，列入喜歡'.format(photo_recommend_list[8][0])
                         ),
                         MessageAction(
                             label='相關推薦',
@@ -301,9 +303,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[0]['IMDB電影名']),
                         text='英文電影推薦:1',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[0]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[0]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -320,9 +322,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[1]['IMDB電影名']),
                         text='英文電影推薦:2',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[1]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[1]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -339,9 +341,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[2]['IMDB電影名']),
                         text='英文電影推薦:3',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[2]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[2]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -358,9 +360,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[3]['IMDB電影名']),
                         text='英文電影推薦:4',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[3]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[3]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -377,9 +379,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[4]['IMDB電影名']),
                         text='英文電影推薦:5',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[4]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[4]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -396,9 +398,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[5]['IMDB電影名']),
                         text='英文電影推薦:6',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[5]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[5]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -415,9 +417,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[6]['IMDB電影名']),
                         text='英文電影推薦:7',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[6]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[6]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -434,9 +436,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[7]['IMDB電影名']),
                         text='英文電影推薦:8',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[7]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[7]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -453,9 +455,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[8]['IMDB電影名']),
                         text='英文電影推薦:9',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[8]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[8]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -472,9 +474,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[9]['IMDB電影名']),
                         text='英文電影推薦:10',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[9]['_id'])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[9]['IMDB電影名'])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -533,9 +535,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[0][0]),
                         text='中文電影推薦:1',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[0][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[0][0])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -552,9 +554,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[1][0]),
                         text='中文電影推薦:2',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[1][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[1][0])
                             ),
                             MessageAction(
 
@@ -572,9 +574,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[2][0]),
                         text='中文電影推薦:3',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[2][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[2][0])
                             ),
                             MessageAction(
 
@@ -592,9 +594,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[3][0]),
                         text='中文電影推薦:4',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[3][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[3][0])
                             ),
                             MessageAction(
 
@@ -612,9 +614,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[4][0]),
                         text='中文電影推薦:5',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[4][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[4][0])
                             ),
                             MessageAction(
 
@@ -632,9 +634,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[5][0]),
                         text='中文電影推薦:6',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[5][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[5][0])
                             ),
                             MessageAction(
 
@@ -652,9 +654,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[6][0]),
                         text='中文電影推薦:7',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[6][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[6][0])
                             ),
                             MessageAction(
 
@@ -672,9 +674,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[7][0]),
                         text='中文電影推薦:8',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[7][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[7][0])
                             ),
                             MessageAction(
 
@@ -692,9 +694,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[8][0]),
                         text='中文電影推薦:9',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[8][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[8][0])
                             ),
                             MessageAction(
 
@@ -712,9 +714,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[9][0]),
                         text='中文電影推薦:10',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(movie_name[9][1])
+                                text='已將電影:{}，列入喜歡'.format(movie_name[9][0])
                             ),
                             MessageAction(
 
@@ -746,9 +748,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[0]),
                         text='中文電影相關推薦:1',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[0]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[0])
                             ),
                             MessageAction(
 
@@ -766,9 +768,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[1]),
                         text='中文電影相關推薦:2',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[1]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[1])
                             ),
                             MessageAction(
 
@@ -786,9 +788,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[2]),
                         text='中文電影相關推薦:3',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[2]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[2])
                             ),
                             MessageAction(
 
@@ -806,9 +808,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[3]),
                         text='中文電影相關推薦:4',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[3]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[3])
                             ),
                             MessageAction(
 
@@ -826,9 +828,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[4]),
                         text='中文電影相關推薦:5',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[4]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[4])
                             ),
                             MessageAction(
 
@@ -846,9 +848,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[5]),
                         text='中文電影相關推薦:6',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[5]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[5])
                             ),
                             MessageAction(
 
@@ -866,9 +868,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[6]),
                         text='中文電影相關推薦:7',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[6]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[6])
                             ),
                             MessageAction(
 
@@ -886,9 +888,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[7]),
                         text='中文電影相關推薦:8',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[7]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[7])
                             ),
                             MessageAction(
 
@@ -906,9 +908,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[8]),
                         text='中文電影相關推薦:9',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[8]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[8])
                             ),
                             MessageAction(
 
@@ -926,9 +928,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[9]),
                         text='中文電影相關推薦:10',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(yahoo_post(movie_name[9]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[9])
                             ),
                             MessageAction(
 
@@ -958,9 +960,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[0]),
                         text='英文電影相關推薦:1',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[0]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[0])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -977,9 +979,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[1]),
                         text='英文電影相關推薦:2',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[1]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[1])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -996,9 +998,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[2]),
                         text='英文電影相關推薦:3',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[2]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[2])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1015,9 +1017,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[3]),
                         text='英文電影相關推薦:4',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[3]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[3])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1034,9 +1036,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[4]),
                         text='英文電影相關推薦:5',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[4]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[4])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1053,9 +1055,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[5]),
                         text='英文電影相關推薦:6',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[5]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[5])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1072,9 +1074,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[6]),
                         text='英文電影相關推薦:7',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[6]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[6])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1091,9 +1093,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[7]),
                         text='英文電影相關推薦:8',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[7]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[7])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1110,9 +1112,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[8]),
                         text='英文電影相關推薦:9',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[8]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[8])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1129,9 +1131,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[9]),
                         text='英文電影相關推薦:10',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[9]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[9])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1289,9 +1291,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[0]),
                         text='個人喜好推薦:1',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[0]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[0])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1308,9 +1310,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[1]),
                         text='個人喜好推薦:2',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[1]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[1])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1327,9 +1329,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[2]),
                         text='個人喜好推薦:3',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[2]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[2])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1346,9 +1348,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[3]),
                         text='個人喜好推薦:4',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[3]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[3])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1365,9 +1367,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[4]),
                         text='個人喜好推薦:5',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[4]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[4])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1384,9 +1386,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[5]),
                         text='個人喜好推薦:6',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[5]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[5])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1403,9 +1405,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[6]),
                         text='個人喜好推薦:7',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[6]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[6])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1422,9 +1424,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[7]),
                         text='個人喜好推薦:8',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[7]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[7])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1441,9 +1443,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[8]),
                         text='個人喜好推薦:9',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[8]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[8])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1460,9 +1462,9 @@ def handle_message(event):
                         title='{}'.format(movie_name[9]),
                         text='個人喜好推薦:10',
                         actions=[
-                            PostbackAction(
+                            MessageAction(
                                 label='喜歡這部電影',
-                                data='喜歡電影的id:{}'.format(mongo_imdb_name_to_id(movie_name[9]))
+                                text='已將電影:{}，列入喜歡'.format(movie_name[9])
                             ),
                             MessageAction(
                                 label='相關推薦',
@@ -1538,6 +1540,8 @@ def personal_favor(userId):
     dis = db.personal_favor_log.find({'userId':userId})
     name_list = [imdb_id['imdbId'] for imdb_id in dis]
     name_list = random.sample(name_list, k=3)
+
+
     host = GCP_IP
     port = 3306
     user = 'root'

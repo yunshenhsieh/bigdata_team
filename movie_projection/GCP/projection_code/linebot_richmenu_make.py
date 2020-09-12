@@ -7,7 +7,7 @@ body = {
     "size": {"width": 2500, "height": 1686},
     "selected": "true",
     "name": "six",
-    "chatBarText": "RichMenu",
+    "chatBarText": "圖文選單",
     "areas":[
         {
           "bounds": {"x": 0, "y": 0, "width": 833, "height": 843},
@@ -15,7 +15,7 @@ body = {
         },
         {
           "bounds": {"x": 0, "y": 843, "width": 833, "height": 843},
-          "action": {"type": "message", "text": "圖像推薦"}
+          "action": {"type": "message", "text": "輿論評估"}
         },
         {
           "bounds": {"x": 833, "y": 0, "width": 833, "height": 843},
@@ -23,15 +23,15 @@ body = {
         },
         {
           "bounds": {"x": 833, "y": 843, "width": 833, "height": 843},
-          "action": {"type": "message", "text": "輿論評估"}
-        },
-        {
-          "bounds": {"x": 1666, "y": 0, "width": 833, "height": 843},
           "action": {"type": "message", "text": "喜好推薦"}
         },
         {
+          "bounds": {"x": 1666, "y": 0, "width": 833, "height": 843},
+          "action": {"type": "message", "text": "圖像推薦"}
+        },
+        {
           "bounds": {"x": 1666, "y": 843, "width": 833, "height": 843},
-          "action": {"type": "message", "text": "r down"}
+          "action": {"type": "message", "text": "熱議電影"}
         }
     ]
   }
