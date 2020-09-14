@@ -1695,6 +1695,7 @@ def kaf_producer_like(userId,imdbId):
 
 from flask import render_template
 from elasticsearch import Elasticsearch
+import datetime
 @app.route("/prediction",methods=['GET','POST'])
 def prediction():
     if request.method == 'POST':
@@ -1757,7 +1758,8 @@ def prediction():
         doc = {'user': 'yunshen',
                '電影預算': budget_view,
                '預測票房': total,
-               '分類':str(group_list).replace("'","")
+               '分類':str(group_list).replace("'",""),
+               '輸入時間':datetime.datetime.now()
                }
         res = es.index(index='prediction', doc_type='elk', body=doc)
         print(res['result'])
