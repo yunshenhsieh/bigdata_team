@@ -22,12 +22,12 @@ from linebot.models import *
 
 # 設定Server啟用細節
 app = Flask(__name__)
-GCP_IP='104.199.132.135'
+IP='<VM IP>'
 imdb_post_path='https://storage.googleapis.com/projection_post/imdb_post/'
 yahoo_post_path='https://storage.googleapis.com/projection_post/yahoo_post/'
 # 生成實體物件
-line_bot_api = LineBotApi("G4LPXeUwFFFHgmIlkFu0KXHLKJEgiyUxNahIUKusvhZYsi690q+mFfNpSVw4UHhxBU+/mbXwtWODQ6VGHsgoBzijvnO0tZFUKtBru0uS8/uWkIHd6RGTgvyuY8mULx/98FTXyhUde5VckdTko0xB2gdB04t89/1O/w1cDnyilFU=")
-handler = WebhookHandler("81c080654026415b7968b9b1c4c6e8f3")
+line_bot_api = LineBotApi("<Channel access token>")
+handler = WebhookHandler("<Channel secret>")
 
 from pymongo import MongoClient
 import json
@@ -498,7 +498,7 @@ def handle_message(event):
 
     elif '輿論評估：' in msg:
         msg_comment=msg.replace(':','\n').replace('：','\n').split('\n')
-        con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+        con = MongoClient('mongodb://'+ IP +':27017/')
         db = con.Movie_project
         dis = db.movie_similarity.count({'電影中文名': "{}".format(msg_comment[1])})
         print(dis)
@@ -519,7 +519,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text='請上傳「一張圖片」或「直接照張像」'))
 
     elif msg == '中文電影推薦':
-        con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+        con = MongoClient('mongodb://'+ IP +':27017/')
         db = con.Movie_project
         dis = db.movie_similarity.find()
         dis=list(dis)
@@ -735,7 +735,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,message)
 
     elif ('相關推薦' and '中文') in msg:
-        con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+        con = MongoClient('mongodb://'+ IP +':27017/')
         db = con.Movie_project
         dis = db.movie_similarity.find({'電影中文名':"{}".format(msg.split('的相關推薦')[0].split('中文電影')[1])})
         movie_name = list(dis[0]['其他電影相似度'].keys())[:]
@@ -1151,7 +1151,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     elif msg == '熱議電影':
-        red = redis.StrictRedis(host=GCP_IP, port=6379, db=0)
+        red = redis.StrictRedis(host=IP, port=6379, db=0)
         hot_imgurl_list=['hotimg_0','hotimg_1','hotimg_2','hotimg_3','hotimg_4','hotimg_5','hotimg_6','hotimg_7','hotimg_8','hotimg_9']
         hot_name_list=['hotname_0','hotname_1','hotname_2','hotname_3','hotname_4','hotname_5','hotname_6','hotname_7','hotname_8','hotname_9']
         hot_url_list=['hoturl_0','hoturl_1','hoturl_2','hoturl_3','hoturl_4','hoturl_5','hoturl_6','hoturl_7','hoturl_8','hoturl_9',]
@@ -1484,7 +1484,7 @@ def handle_message(event):
 
 import pymysql,random
 def sql_animation(movie_name):
-    host = GCP_IP
+    host = IP
     port = 3306
     user = 'root'
     passwd = 'example'
@@ -1503,7 +1503,7 @@ def sql_animation(movie_name):
     return m_list
 
 def yahoo_post(movie_name):
-    con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+    con = MongoClient('mongodb://'+ IP +':27017/')
     db = con.Movie_project
     dis = db.movie_similarity.find({'電影中文名': "{}".format(movie_name)})
     dis = list(dis)
@@ -1511,7 +1511,7 @@ def yahoo_post(movie_name):
     return yahoo_post_id
 
 def mongo_imdb():
-    con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+    con = MongoClient('mongodb://'+ IP +':27017/')
     db = con.Movie_project
     dis = db.movie_similarity_IMDB_new.find()
     dis = list(dis)
@@ -1519,7 +1519,7 @@ def mongo_imdb():
     return dis
 
 def mongo_imdb_similarity(movie_name):
-    con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+    con = MongoClient('mongodb://'+ IP +':27017/')
     db = con.Movie_project
     dis = db.movie_similarity_IMDB_new.find({'IMDB電影名': "{}".format(movie_name)})
     dis = list(dis)
@@ -1527,7 +1527,7 @@ def mongo_imdb_similarity(movie_name):
     return dis
 
 def mongo_imdb_name_to_id(movie_name):
-    con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+    con = MongoClient('mongodb://'+ IP +':27017/')
     db = con.Movie_project
     dis = db.movie_similarity_IMDB_new.find({'IMDB電影名': "{}".format(movie_name)})
     dis = list(dis)
@@ -1535,14 +1535,14 @@ def mongo_imdb_name_to_id(movie_name):
     return dis
 
 def personal_favor(userId):
-    con = MongoClient('mongodb://'+ GCP_IP +':27017/')
+    con = MongoClient('mongodb://'+ IP +':27017/')
     db = con.yun
     dis = db.personal_favor_log.find({'userId':userId})
     name_list = [imdb_id['imdbId'] for imdb_id in dis]
     name_list = random.sample(name_list, k=3)
 
 
-    host = GCP_IP
+    host = IP
     port = 3306
     user = 'root'
     passwd = 'example'
@@ -1640,7 +1640,7 @@ def kaf_producer(body):
     # 步驟1. 設定要連線到Kafka集群的相關設定
     props = {
         # Kafka集群在那裡?
-        'bootstrap.servers': GCP_IP + ':9092',  # <-- 置換成要連接的Kafka集群
+        'bootstrap.servers': IP + ':9092',  # <-- 置換成要連接的Kafka集群
         'error_cb': error_cb  # 設定接收error訊息的callback函數
     }
     # 步驟2. 產生一個Kafka的Producer的實例
@@ -1670,7 +1670,7 @@ def kaf_producer_like(userId,imdbId):
     # 步驟1. 設定要連線到Kafka集群的相關設定
     props = {
         # Kafka集群在那裡?
-        'bootstrap.servers': GCP_IP + ':9092',  # <-- 置換成要連接的Kafka集群
+        'bootstrap.servers': IP + ':9092',  # <-- 置換成要連接的Kafka集群
         'error_cb': error_cb  # 設定接收error訊息的callback函數
     }
     # 步驟2. 產生一個Kafka的Producer的實例
@@ -1753,7 +1753,7 @@ def prediction():
             change_total=total
             budget_unit='萬'
 
-        es = Elasticsearch('http://'+ GCP_IP +':9200')
+        es = Elasticsearch('http://'+ IP +':9200')
         doc = {'user': 'yunshen',
                '電影預算': budget_view,
                '預測票房': total,
